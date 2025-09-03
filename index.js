@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const productRoutes = require("./routes/productRoutes");
 
@@ -12,21 +11,22 @@ const app = express();
 // ✅ CORS config
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://product-dashboard-two-eta.vercel.app"
-    ],
+    origin: ["http://localhost:3000", "https://ascent-mu.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
 
-app.use(bodyParser.json());
+// ✅ Parse JSON
+app.use(express.json());
 
 // ✅ Routes
 app.use("/api/products", productRoutes);
 
-// ✅ MongoDB connection (only once)
+app.listen(5000, () => {
+  console.log(`Example app listening on port 5000`);
+});
+// ✅ MongoDB connection
 if (!mongoose.connection.readyState) {
   mongoose
     .connect(process.env.MONGODB_URI)
@@ -34,5 +34,5 @@ if (!mongoose.connection.readyState) {
     .catch((err) => console.error("MongoDB connection error:", err));
 }
 
-// ✅ Vercel requires: export handler instead of app.listen
+// ✅ Vercel requires: export handler
 module.exports = app;
