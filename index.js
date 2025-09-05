@@ -11,7 +11,8 @@ const app = express();
 // ✅ CORS config
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://ascent-mu.vercel.app"],
+    origin: ["http://localhost:3000", "https://ascentgarments.com","https://www.ascentgarments.com"
+],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -23,9 +24,9 @@ app.use(express.json());
 // ✅ Routes
 app.use("/api/products", productRoutes);
 
-app.listen(5000, () => {
-  console.log(`Example app listening on port 5000`);
-});
+// app.listen(5000, () => {
+//   console.log(`Example app listening on port 5000`);
+// });
 // ✅ MongoDB connection
 if (!mongoose.connection.readyState) {
   mongoose
