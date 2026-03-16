@@ -11,7 +11,13 @@ const app = express();
 // ✅ CORS config
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://ascentgarments.com","https://www.ascentgarments.com"
+    origin: [
+  "http://localhost:3000",
+  "https://ascentgarments.com",
+  "https://www.ascentgarments.com",
+  "https://ascent-kohl.vercel.app",
+  "https://ascent-git-main.vercel.app",
+  /\.vercel\.app$/  // yeh saare vercel URLs allow karega
 ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
